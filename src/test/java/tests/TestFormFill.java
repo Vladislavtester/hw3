@@ -18,7 +18,7 @@ public class TestFormFill extends TestBase {
                 .setEmail()
                 .setGender("Other")
                 .setNumber()
-                .setBirthDate("15","03","2008");
+                .setBirthDate("15","July","2008");
 
         $("#subjectsInput").setValue("bio").pressEnter();
         $("#hobbiesWrapper").$(byText("Reading")).click();
@@ -31,11 +31,13 @@ public class TestFormFill extends TestBase {
         $("#submit").click();
 
         //Проверки
-        $(".modal-body").should(appear);
-        $(".modal-header").shouldHave(text("Thanks for submitting the form"));
-        $(".modal-body").shouldHave(text("Kashin@mail.ru"));
-        $(".modal-body").shouldHave(text("1234567890"));
-        $(".modal-body").shouldHave(text("Pushkina 12"));
+
+        registrationPage.verifyModalAppears()
+                .verifyResult("Student Name", "Vova Kashin")
+                .verifyResult("Student Email", "Kashin@mail.ru")
+                .verifyResult("Mobile", "1234567890")
+                .verifyResult("Address", "Pushkina 12");
+
 
     }
 }

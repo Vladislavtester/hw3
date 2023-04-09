@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.RegistrationResultsModal;
 import pages.components.calendarComponent;
 
 import static com.codeborne.selenide.Condition.text;
@@ -10,8 +11,8 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
 
-    pages.components.calendarComponent calendarComponent =new calendarComponent();
-
+    calendarComponent calendarComponent =new calendarComponent();
+    RegistrationResultsModal registrationResultsModal= new RegistrationResultsModal();
     private SelenideElement lastNameInput= $("#lastName"),
     firstNameInput= $("#firstName"),
             emailInput= $("#userEmail"),
@@ -58,4 +59,17 @@ public class RegistrationPage {
 
         return this;
     }
+
+        public RegistrationPage verifyModalAppears() {
+
+        registrationResultsModal.verifyResultsModalAppears();
+
+        return this;
+
+    }
+    public RegistrationPage verifyResult(String key, String value) {
+        registrationResultsModal.verifyResult(key,value);
+        return this;
+    }
 }
+
