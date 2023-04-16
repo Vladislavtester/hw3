@@ -17,10 +17,11 @@ public class RegistrationPage {
     firstNameInput= $("#firstName"),
             emailInput= $("#userEmail"),
     numberInput = $("#userNumber");
-    private final String TITLE_TEXT="Student Registration Form";
+
     public RegistrationPage openPage()
     {
         open("/automation-practice-form");
+        String TITLE_TEXT = "Student Registration Form";
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
