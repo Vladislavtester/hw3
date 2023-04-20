@@ -15,13 +15,19 @@ public class RegistrationPage {
     RegistrationResultsModal registrationResultsModal= new RegistrationResultsModal();
     private SelenideElement lastNameInput= $("#lastName"),
     firstNameInput= $("#firstName"),
-            emailInput= $("#userEmail"),
-    numberInput = $("#userNumber");
+    emailInput= $("#userEmail"),
+    numberInput = $("#userNumber"),
 
+    addresInput= $("#currentAddress"),
+
+    stateSelect= $("#state"),
+    citySelect = $("#city");
+
+
+    private final String TITLE_TEXT="Student Registration Form";
     public RegistrationPage openPage()
     {
         open("/automation-practice-form");
-        String TITLE_TEXT = "Student Registration Form";
         $(".practice-form-wrapper").shouldHave(text(TITLE_TEXT));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
@@ -71,6 +77,44 @@ public class RegistrationPage {
     public RegistrationPage verifyResult(String key, String value) {
         registrationResultsModal.verifyResult(key,value);
         return this;
+    }
+    public RegistrationPage setSubject(String value) {
+        $("#subjectsInput").setValue(value).pressEnter();
+
+        return this;
+    }
+    public RegistrationPage setHobbie(String value) {
+        $("#hobbiesWrapper").$(byText (value)).click();
+
+        return this;
+    }
+    public RegistrationPage addPhoto() {
+        $("#uploadPicture").uploadFromClasspath("photo.jpg");
+
+        return this;
+    }
+    public RegistrationPage setAddres() {
+        addresInput.setValue("Pushkina 12");
+
+        return this;
+    }
+    public RegistrationPage setState(String value) {
+        stateSelect.click();
+        $("#stateCity-wrapper").$(byText(value)).click();
+
+        return this;
+    }
+    public RegistrationPage setCity(String value) {
+        citySelect.click();
+        citySelect.$(byText(value)).click();
+
+        return this;
+    }
+    public RegistrationPage submitConfirm() {
+        $("#submit").click();
+
+        return this;
+
     }
 }
 

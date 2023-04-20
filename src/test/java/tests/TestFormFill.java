@@ -18,17 +18,14 @@ public class TestFormFill extends TestBase {
                 .setEmail()
                 .setGender("Other")
                 .setNumber()
-                .setBirthDate("15","July","2008");
-
-        $("#subjectsInput").setValue("bio").pressEnter();
-        $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#uploadPicture").uploadFromClasspath("photo.jpg");
-        $("#currentAddress").setValue("Pushkina 12");
-        $("#state").click();
-        $("#stateCity-wrapper").$(byText("Haryana")).click();
-        $("#city").click();
-        $("#city").$(byText("Panipat")).click();
-        $("#submit").click();
+                .setBirthDate("15","July","2008")
+                .setSubject("bio")
+                .setHobbie("Reading")
+                .addPhoto()
+                .setAddres()
+                .setState("Haryana")
+                .setCity("Panipat")
+                .submitConfirm();
 
         //Проверки
 
